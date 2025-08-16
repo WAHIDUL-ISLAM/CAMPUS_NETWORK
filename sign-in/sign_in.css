@@ -1,0 +1,562 @@
+/* ==============================
+   Campus Network — Sign In CSS
+   (Light-only, navy aesthetic)
+   ============================== */
+
+/* ---------- Tokens ---------- */
+:root {
+    --bg: #f4f6fb;
+    --ink: #0f1a2a;
+    --muted: #5f6b85;
+
+    --navy-1: #0b1d3b;
+    --navy-2: #0f2550;
+    --navy-3: #15356f;
+
+    --cyan: #11b6d7;
+    --indigo: #4f46e5;
+
+    --card: #ffffff;
+    --hair: #d6dfef;
+    --focus: #93c5fd;
+
+    --warn-bg: #fff8e1;
+    --warn-br: #fde68a;
+    --warn-ink: #92400e;
+
+    --tagline-cycle: 9s;
+    --tagline-ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(110% 80% at 110% 0%, rgba(79, 70, 229, .08), transparent 60%),
+        radial-gradient(110% 80% at 0% 110%, rgba(17, 182, 215, .06), transparent 60%),
+        var(--bg);
+}
+
+/* ---------- Layout ---------- */
+.auth {
+    min-height: 100vh;
+    display: flex;
+    transform-origin: top center;
+}
+
+/* Left panel */
+.auth-visual {
+    max-width: 50%;
+    flex: 1 1 auto;
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--hair);
+    background:
+        radial-gradient(70% 60% at 20% 20%, rgba(17, 182, 215, .18), transparent 60%),
+        linear-gradient(160deg, var(--navy-1), var(--navy-2) 55%, var(--navy-3));
+    color: #e9eefb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Centered brand block */
+.visual-center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    min-height: 420px;
+    width: 100%;
+}
+
+.logo-badge {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: radial-gradient(60% 60% at 50% 40%, #1b7ea0 10%, #0e2b57 70%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35), inset 0 0 0 2px rgba(255, 255, 255, .06);
+    display: grid;
+    place-items: center;
+    margin-bottom: .5rem;
+    animation: pulse 3.2s ease-in-out infinite;
+}
+
+.logo-badge .logo-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #11b6d7;
+    box-shadow: 0 0 14px rgba(17, 182, 215, .9);
+}
+
+.logo-badge .logo-ring {
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255, 255, 255, .22);
+    animation: spin 10s linear infinite;
+}
+
+.brand {
+    font-size: clamp(22px, 3.2vw, 28px);
+    font-weight: 700;
+    letter-spacing: .2px;
+}
+
+.tagline {
+    margin: 0;
+    opacity: .9;
+}
+
+/* Decorative shapes */
+.shapes .shape,
+.diamond,
+.triangle {
+    position: absolute;
+    opacity: .26;
+    will-change: transform;
+    filter: blur(.2px);
+}
+
+.shape.s1 {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5b63ff, #1fc6e0);
+    top: 12%;
+    left: 8%;
+    animation: float 12s ease-in-out infinite;
+}
+
+.shape.s2 {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #22d3ee, #16a38f);
+    bottom: 10%;
+    right: 12%;
+    animation: float 14s ease-in-out infinite .2s;
+}
+
+.shape.s3 {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f26cf2, #6a8bff);
+    top: 62%;
+    left: 18%;
+    animation: float 10s ease-in-out infinite .6s;
+}
+
+.diamond {
+    width: 110px;
+    height: 110px;
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, #a78bfa, #22d3ee);
+    top: 36%;
+    right: 6%;
+    animation: drift 16s ease-in-out infinite;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 55px solid transparent;
+    border-right: 55px solid transparent;
+    border-bottom: 95px solid rgba(79, 70, 229, .75);
+    top: 8%;
+    right: 28%;
+    animation: bob 13s ease-in-out infinite;
+}
+
+/* Motion reduce */
+@media (prefers-reduced-motion: reduce) {
+
+    .shapes .shape,
+    .diamond,
+    .triangle,
+    .logo-badge {
+        animation: none !important;
+    }
+}
+
+/* Right panel */
+.auth-form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Card */
+.card.form-card {
+    width: min(560px, 92vw);
+    background: var(--card);
+    border: 1px solid var(--hair);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 26, 42, .08);
+}
+
+/* Inputs + icons */
+.input-icon {
+    position: relative;
+}
+
+.input-icon>i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+}
+
+.input-icon>input.form-control {
+    padding: 12px 44px 12px 40px;
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--hair);
+    border-radius: 12px;
+    outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.input-icon>input.form-control:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(147, 197, 253, .45);
+}
+
+/* Password toggle */
+.toggle-eye {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 0;
+    background: transparent;
+    color: #7b8499;
+    cursor: pointer;
+}
+
+.toggle-eye:hover {
+    background: rgba(15, 26, 42, .06);
+}
+
+/* Button */
+.cn-btn-primary {
+    background: linear-gradient(135deg, var(--indigo), var(--cyan));
+    border: none;
+    color: #fff;
+    border-radius: 12px;
+    padding: .9rem 1rem;
+    font-weight: 600;
+    transition: transform .06s ease, filter .2s ease;
+}
+
+.cn-btn-primary:hover {
+    filter: brightness(1.06);
+}
+
+.cn-btn-primary:active {
+    transform: translateY(1px);
+}
+
+.cn-btn-primary:focus {
+    outline: 2px solid #38bdf8;
+}
+
+/* Links */
+a.link-primary {
+    color: var(--indigo);
+}
+
+a.link-primary:hover {
+    text-decoration: underline;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 12px;
+    padding: .8rem 1rem;
+}
+
+.alert-warning {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-br);
+    color: var(--warn-ink);
+}
+
+/* Checkbox UX */
+.form-check-input,
+.form-check-label {
+    cursor: pointer;
+}
+
+.form-check-input:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Taglines (animated) */
+.animated-taglines {
+    position: relative;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    overflow: hidden;
+}
+
+.animated-taglines span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(120%);
+    animation: taglineSlide var(--tagline-cycle) var(--tagline-ease) infinite;
+    will-change: transform, opacity;
+}
+
+.animated-taglines span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.animated-taglines span:nth-child(2) {
+    animation-delay: 3s;
+}
+
+.animated-taglines span:nth-child(3) {
+    animation-delay: 6s;
+}
+
+/* ---------- Animations ---------- */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1)
+    }
+
+    50% {
+        transform: scale(1.04)
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(-14px)
+    }
+}
+
+@keyframes drift {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(45deg)
+    }
+
+    50% {
+        transform: translateX(-14px) rotate(45deg)
+    }
+}
+
+@keyframes bob {
+
+    0%,
+    100% {
+        transform: translateY(0)
+    }
+
+    50% {
+        transform: translateY(16px)
+    }
+}
+
+@keyframes taglineSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(120%);
+    }
+
+    5% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+
+    35% {
+        opacity: 0;
+        transform: translateY(-120%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-120%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animated-taglines span {
+        transform: none;
+        animation: taglineFade var(--tagline-cycle) ease-in-out infinite;
+    }
+
+    @keyframes taglineFade {
+        0% {
+            opacity: 0;
+        }
+
+        8% {
+            opacity: 1;
+        }
+
+        30% {
+            opacity: 1;
+        }
+
+        38% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+}
+
+/* ---------- Responsive ---------- */
+
+/* ≤ 992px: hide left panel, center form, slightly smaller type */
+@media (max-width: 992px) {
+    .auth-visual {
+        display: none;
+    }
+
+    .auth-form {
+        padding: 1rem 2rem 1rem 1rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card.form-card {
+        width: 90%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 1.25rem !important;
+        border-radius: 14px;
+        font-size: .95rem;
+    }
+}
+
+/* ≤ 768px */
+@media (max-width: 768px) {
+    .auth-form {
+        padding: 1rem 1.5rem 1rem 1rem;
+    }
+
+    .card.form-card {
+        width: 88%;
+        max-width: 420px;
+        padding: 1rem !important;
+        font-size: .92rem;
+    }
+
+    .form-label,
+    .form-check-label {
+        font-size: .9rem;
+    }
+
+    .input-icon>input.form-control {
+        font-size: .9rem;
+        min-height: 42px;
+    }
+
+    .cn-btn-primary {
+        font-size: .95rem;
+        padding: .75rem;
+    }
+}
+
+/* ≤ 576px */
+@media (max-width: 576px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .auth-form {
+        padding: .85rem 1rem;
+    }
+
+    .card.form-card {
+        width: 85%;
+        max-width: 360px;
+        margin: 0 auto;
+        padding: .85rem !important;
+        font-size: .88rem;
+    }
+
+    .form-label,
+    .form-check-label {
+        font-size: .85rem;
+    }
+
+    .input-icon>input.form-control {
+        font-size: .85rem;
+        min-height: 40px;
+    }
+
+    .cn-btn-primary {
+        font-size: .9rem;
+        padding: .65rem;
+    }
+}
+
+/* ≤ 360px */
+@media (max-width: 360px) {
+    .card.form-card {
+        width: 82%;
+        max-width: calc(100% - 1.5rem);
+        margin: 0 auto;
+        padding: .75rem !important;
+        font-size: .85rem;
+    }
+}

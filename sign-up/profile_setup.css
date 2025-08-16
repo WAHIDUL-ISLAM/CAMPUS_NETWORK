@@ -1,0 +1,214 @@
+/* ========== Premium UI for Profile Setup ========== */
+/* Accessible contrast, soft depth, elegant motion, and clean hierarchy */
+
+:root {
+    /* Core palette */
+    --navy: #0F2E4F;
+    --blue: #2F6AA6;
+    --teal: #54B1C6;
+    --ink: #0f172a;
+    --muted: #677489;
+    --line: #d5dde9;
+
+    /* Surfaces */
+    --bg: #eef3f9;
+    /* page bg */
+    --card: #ffffff;
+    /* card bg */
+    --card-2: #fbfdff;
+    /* subtle surface contrast */
+
+    /* Effects */
+    --radius: 14px;
+    --radius-sm: 12px;
+    --shadow: 0 20px 40px rgba(22, 53, 92, .10), 0 2px 8px rgba(22, 53, 92, .06);
+    --shadow-soft: 0 8px 18px rgba(22, 53, 92, .08), 0 2px 6px rgba(22, 53, 92, .05);
+
+    /* Focus ring */
+    --ring: 0 0 0 .25rem rgba(84, 177, 198, .22);
+
+    /* Typography rhythm */
+    --lh: 1.55;
+}
+
+html,
+body {
+    background:
+        radial-gradient(1200px 600px at 110% -10%, rgba(84, 177, 198, .09), transparent 50%),
+        radial-gradient(900px 500px at -10% 110%, rgba(47, 106, 166, .08), transparent 50%),
+        linear-gradient(180deg, #f3f7fc 0%, var(--bg) 100%);
+    color: var(--ink);
+    line-height: var(--lh);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 960px;
+}
+
+/* ============ Header ============ */
+.page-header {
+    position: relative;
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    color: #fff;
+    padding: 26px 28px;
+    border-radius: calc(var(--radius) + 4px);
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.page-header::after {
+    /* decorative soft highlight */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px 200px at 80% -40%, rgba(255, 255, 255, .28), transparent 60%);
+    pointer-events: none;
+}
+
+.page-header h1 {
+    margin: 0 0 8px;
+    font-weight: 800;
+    letter-spacing: .2px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .12);
+}
+
+.small-meta {
+    color: #eef;
+    opacity: .95;
+}
+
+.role-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .2);
+    border: 1px dashed rgba(255, 255, 255, .5);
+    font-weight: 800;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+}
+
+/* ============ Card ============ */
+.ps-card {
+    background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+/* ============ Form Controls ============ */
+.form-label {
+    font-weight: 700;
+    margin-bottom: .4rem;
+    color: #0f223a;
+}
+
+.form-control,
+.form-select {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line);
+    padding: 11px 13px;
+    background-color: #fdfefe;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 1px 2px rgba(16, 24, 40, .04);
+    transition: border-color .18s ease, box-shadow .18s ease, transform .06s ease;
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color: #c5cedd;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--teal);
+    box-shadow: var(--ring);
+    outline: none;
+}
+
+/* Validation states (Bootstrap-compatible) */
+.is-invalid {
+    border-color: #f19999 !important;
+}
+
+.is-invalid:focus {
+    box-shadow: 0 0 0 .25rem rgba(244, 63, 94, .18) !important;
+}
+
+.is-valid {
+    border-color: #79c59d !important;
+}
+
+.is-valid:focus {
+    box-shadow: 0 0 0 .25rem rgba(34, 197, 94, .18) !important;
+}
+
+/* File preview */
+.img-thumbnail {
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #f7fafc;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 12px;
+}
+
+.alert-danger {
+    border: 1px solid #fecaca;
+    background: #fff5f6;
+    color: #9f1d1d;
+}
+
+/* Buttons */
+.btn-primary {
+    --bs-btn-bg: var(--blue);
+    --bs-btn-border-color: var(--blue);
+    --bs-btn-hover-bg: #2b5f93;
+    --bs-btn-hover-border-color: #2b5f93;
+    --bs-btn-focus-shadow-rgb: 47, 106, 166;
+    --bs-btn-active-bg: #234f7b;
+    --bs-btn-active-border-color: #234f7b;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-weight: 800;
+    letter-spacing: .2px;
+    box-shadow: 0 10px 18px rgba(47, 106, 166, .18);
+    transition: transform .08s ease, box-shadow .18s ease, background-color .18s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 24px rgba(47, 106, 166, .22);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Subtle section splitters (if you add rows) */
+.section {
+    padding-top: 12px;
+    margin-top: 8px;
+    border-top: 1px dashed var(--line);
+}
+
+/* Layout niceties */
+.row.g-3>[class*="col-"] {
+    padding-top: 2px;
+}
+
+/* slightly tighter rhythm */
+
+/* Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}

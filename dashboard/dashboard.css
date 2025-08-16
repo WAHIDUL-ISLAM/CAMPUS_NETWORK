@@ -1,0 +1,449 @@
+/* === Dashboard — High-class Light Theme (futuristic, eye-pleasing) === */
+/* Uses Bootstrap 5.3 + Font Awesome; no dark mode. */
+
+/* ---------- Design Tokens ---------- */
+:root {
+    /* Surfaces */
+    --bg: #f6f8ff;
+    --surface: #ffffff;
+    --surface-2: #f0f4ff;
+    --border: #e6e9f5;
+
+    /* Primary scale (cool blue) */
+    --primary-50: #eff6ff;
+    --primary-100: #dbeafe;
+    --primary-200: #bfdbfe;
+    --primary-300: #93c5fd;
+    /* light */
+    --primary-400: #60a5fa;
+    --primary-500: #3b82f6;
+    --primary-600: #2563eb;
+    /* base */
+    --primary-700: #1d4ed8;
+    /* hover */
+    --primary: var(--primary-600);
+
+    /* Accent & status */
+    --accent: #7c3aed;
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+
+    /* Typography */
+    --text: #0f172a;
+    --muted: #667085;
+
+    /* Elevation & shape */
+    --radius-xl: 22px;
+    --radius-lg: 16px;
+    --radius: 12px;
+    --shadow-1: 0 10px 24px -12px rgba(17, 24, 39, .12), 0 2px 8px -2px rgba(17, 24, 39, .06);
+    --shadow-2: 0 24px 48px -18px rgba(17, 24, 39, .18), 0 6px 18px -6px rgba(17, 24, 39, .1);
+    --ring: 0 0 0 3px rgba(37, 99, 235, .25);
+
+
+    --topbar-bg: #ffffff;
+}
+
+/* ---------- Base ---------- */
+html,
+body {
+    height: 100%
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+    background: radial-gradient(1200px 600px at 10% -10%, #f0f4ff 0%, #f6f8ff 40%, #f7f8ff 80%) fixed;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.text-muted {
+    color: var(--muted) !important
+}
+
+/* Accessibility skip */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden
+}
+
+.skip-link:focus {
+    position: fixed;
+    left: 16px;
+    top: 16px;
+    padding: .5rem .75rem;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 10px;
+    z-index: 2000
+}
+
+/* ---------- Layout ---------- */
+.app {
+    min-height: 100vh
+}
+
+.cn-btn-primary {
+    --bs-btn-bg: var(--primary);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-bg: var(--primary-700);
+    --bs-btn-hover-border-color: var(--primary-700);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 9999px
+}
+
+/* Header / Topbar - Premium Whitish Look */
+.cn-topbar {
+    background: linear-gradient(90deg, #fafbff 0%, #f5f7fa 100%);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    /* spacing below header */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+
+/* Links in header - minimal color shift on hover */
+.cn-topbar .nav-link {
+    color: var(--primary-700);
+    font-weight: 600;
+}
+
+.cn-topbar .nav-link:hover {
+    color: var(--primary-500);
+}
+
+
+/* ---------- Cards & Sections ---------- */
+.card,
+.cn-card {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-1);
+    transition: transform .18s ease, box-shadow .22s ease;
+}
+
+.card:hover,
+.cn-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2)
+}
+
+.list-group-item {
+    background: transparent;
+    border-color: var(--border)
+}
+
+/* Section titles (e.g., “Upcoming Events”, from your .section-title usage) */
+.section-title {
+    font-weight: 800;
+    /* font-size: 2rem; */
+    color: var(--primary-700);
+    letter-spacing: .2px;
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+.section-title::after {
+    content: "";
+    display: inline-block;
+    width: 42px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--primary-400)
+}
+
+/* “Stat pill” badges used in your headings */
+.stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .3rem .7rem;
+    font-size: 1rem;
+    border-radius: 9999px;
+    background: var(--primary-50);
+    color: var(--primary-700);
+    border: 1px solid var(--primary-100);
+    font-weight: 700
+}
+
+/* ---------- Buttons (OVAL + white text; hover only deepens bg) ---------- */
+/* Global button shape & behavior */
+.btn {
+    border-radius: 9999px;
+    /* oval */
+    --bs-btn-border-radius: 9999px;
+    --bs-btn-hover-color: #fff;
+    /* text stays white */
+    transition: transform .12s ease, box-shadow .12s ease, background-color .15s ease;
+}
+
+.btn:active {
+    transform: translateY(0)
+}
+
+.btn:focus-visible {
+    box-shadow: var(--ring)
+}
+
+/* Primary / filled buttons */
+.btn,
+.btn-primary,
+.btn.cn-btn-primary {
+    --bs-btn-bg: var(--primary-600);
+    --bs-btn-border-color: var(--primary-600);
+    --bs-btn-color: #fff;
+    --bs-btn-hover-bg: var(--primary-700);
+    --bs-btn-hover-border-color: var(--primary-700);
+    --bs-btn-focus-shadow-rgb: 37, 99, 235;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+}
+
+/* “Outline” house style: use a soft base, then deepen on hover (no text flip) */
+.btn-outline,
+.btn-outline-primary,
+.btn.cn-btn-outline {
+    --bs-btn-bg: var(--primary-300);
+    /* light base */
+    --bs-btn-border-color: var(--primary-600);
+    --bs-btn-color: #fff;
+    /* always white text */
+    --bs-btn-hover-bg: var(--primary-700);
+    /* deeper on hover */
+    --bs-btn-hover-border-color: var(--primary-700);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-focus-shadow-rgb: 37, 99, 235;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+}
+
+/* Subtle lift on hover for all buttons */
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px -14px rgba(37, 99, 235, .42)
+}
+
+/* ---------- Quick Action (modal list) ---------- */
+.quick-action-item {
+    display: flex;
+    gap: .8rem;
+    align-items: center;
+    text-align: left;
+    border-radius: 14px
+}
+
+.quick-action-item i {
+    font-size: 1.05rem;
+    opacity: .9
+}
+
+.quick-action-item strong {
+    display: block
+}
+
+.quick-action-item:hover {
+    background: var(--primary-50)
+}
+
+
+.quick-action-item.active {
+    background: var(--primary-100);
+    color: var(--primary-700);
+    border-radius: 10px;
+    margin: 2px 0;
+}
+
+
+.quick-action-item.active i {
+    color: var(--primary-700);
+    opacity: 1;
+}
+
+
+/* ---------- Badges, Chips, Progress ---------- */
+.badge-soft {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .38rem .8rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    background: var(--surface-2);
+    border: 1px solid var(--border)
+}
+
+.badge-soft i {
+    opacity: .85
+}
+
+.badge-soft-primary {
+    background: var(--primary-50);
+    color: var(--primary-700);
+    border-color: var(--primary-100)
+}
+
+.badge-soft-success {
+    background: #ecfdf5;
+    color: #065f46;
+    border-color: #d1fae5
+}
+
+.badge-soft-warning {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fef3c7
+}
+
+.badge-soft-danger {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fee2e2
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    padding: .35rem .9rem;
+    border-radius: 9999px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    font-weight: 700;
+    color: var(--text)
+}
+
+.chip i {
+    opacity: .85
+}
+
+/* Progress bars (Bootstrap) */
+.progress {
+    height: 10px;
+    border-radius: 9999px;
+    background: #eef2ff
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-700))
+}
+
+/* ---------- Tables ---------- */
+.table thead th {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    color: var(--text)
+}
+
+.table tbody tr:hover {
+    background: #fafcff
+}
+
+/* ---------- Forms ---------- */
+.form-control,
+.form-select {
+    border-radius: 14px;
+    border-color: var(--border);
+    box-shadow: none
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-400);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, .12)
+}
+
+/* ---------- Icon utilities ---------- */
+.icon-12 {
+    font-size: 12px;
+    line-height: 1
+}
+
+.icon-14 {
+    font-size: 14px;
+    line-height: 1
+}
+
+.icon-16 {
+    font-size: 16px;
+    line-height: 1
+}
+
+.icon-18 {
+    font-size: 18px;
+    line-height: 1
+}
+
+.icon-20 {
+    font-size: 20px;
+    line-height: 1
+}
+
+.icon-muted {
+    color: var(--muted)
+}
+
+.icon-primary {
+    color: var(--primary)
+}
+
+.icon-accent {
+    color: var(--accent)
+}
+
+/* Special dropdown button styling */
+.btn.dropdown-toggle {
+    background: linear-gradient(135deg, var(--primary-500), var(--accent));
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+}
+
+.btn.dropdown-toggle:hover,
+.btn.dropdown-toggle:focus {
+    background: linear-gradient(135deg, var(--primary-700), var(--accent));
+    color: #fff;
+    box-shadow: 0 6px 16px -6px rgba(37, 99, 235, .4);
+}
+
+.btn.dropdown-toggle:active {
+    background: linear-gradient(135deg, var(--primary-700), var(--accent));
+    transform: translateY(0);
+}
+
+/* Cancel button inside quick action modal - softer hover/focus */
+/* Cancel button in Quick Action modal - red theme */
+#quickActionModal .btn.cn-btn-outline {
+    --bs-btn-bg: #fee2e2;
+    /* light red background */
+    --bs-btn-border-color: #fca5a5;
+    /* soft red border */
+    --bs-btn-color: #b91c1c;
+    /* deep red text */
+
+    --bs-btn-hover-bg: #ef4444;
+    /* dark red hover */
+    --bs-btn-hover-border-color: #b91c1c;
+    --bs-btn-hover-color: #fff;
+    /* white text on hover */
+
+    border-radius: 9999px;
+    /* keep oval shape */
+    font-weight: 600;
+}
+
+
+#quickActionModal .btn.cn-btn-outline:focus {
+    background-color: var(--primary-100);
+    border-color: var(--primary-400);
+    color: var(--primary-700);
+}

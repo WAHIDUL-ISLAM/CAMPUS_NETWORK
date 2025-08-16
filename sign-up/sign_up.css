@@ -1,0 +1,350 @@
+/* ========== Create Account — Light-first theme with palette #113F67 #34699A #58A0C8 #FDF5AA ========== */
+
+/* Tokens */
+:root {
+    --navy: #113F67;
+    --blue: #34699A;
+    --teal: #58A0C8;
+    --butter: #FDF5AA;
+
+    --bg: #f9fafb;
+    --surface: #ffffff;
+    --surface-2: #f3f6fb;
+    --border: #e6eaf2;
+
+    --text: #0f172a;
+    --muted: #6b7280;
+
+    --indigo: #4f46e5;
+    --cyan: #06b6d4;
+
+    --radius: 16px;
+    --shadow-1: 0 10px 22px -12px rgba(15, 23, 42, 0.12);
+    --shadow-2: 0 26px 60px -24px rgba(17, 24, 39, 0.18);
+}
+
+/* Dark mode (optional, if you toggle data-bs-theme on <html>) */
+[data-bs-theme="dark"] {
+    --bg: #0f1b2c;
+    --surface: #0f172a;
+    --surface-2: #0c1524;
+    --border: #1f2a3a;
+
+    --text: #e6f1ff;
+    --muted: #9fb1c7;
+}
+
+/* Base */
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+.auth {
+    font-size: 0.85rem;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+}
+
+@media (max-width: 992px) {
+    .auth {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Left visual panel */
+.auth-visual {
+    position: relative;
+    background: linear-gradient(180deg, var(--navy), var(--blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    overflow: hidden;
+}
+
+.auth-form .small {
+    font-size: .9rem;
+}
+
+.visual-gradient {
+    position: absolute;
+    inset: -20%;
+    background:
+        radial-gradient(800px 600px at 90% -10%, rgba(88, 160, 200, .25), transparent 70%),
+        radial-gradient(600px 500px at -10% 110%, rgba(253, 245, 170, .22), transparent 70%);
+    mix-blend-mode: screen;
+    filter: saturate(120%);
+    animation: slow-pan 24s linear infinite;
+}
+
+@keyframes slow-pan {
+    to {
+        transform: translate3d(4%, -2%, 0)
+    }
+}
+
+.visual-shapes .shape,
+.visual-shapes .diamond,
+.visual-shapes .triangle {
+    position: absolute;
+    opacity: .4;
+    filter: blur(.2px);
+}
+
+.shape.s1 {
+    width: 140px;
+    height: 140px;
+    top: 12%;
+    left: 12%;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite alternate;
+}
+
+.shape.s2 {
+    width: 110px;
+    height: 110px;
+    bottom: 12%;
+    right: 18%;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite alternate;
+}
+
+.shape.s3 {
+    width: 90px;
+    height: 90px;
+    top: 55%;
+    left: 35%;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 50%;
+    animation: float 12s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-16px)
+    }
+}
+
+.diamond {
+    width: 72px;
+    height: 72px;
+    background: rgba(255, 255, 255, .10);
+    transform: rotate(45deg);
+    top: 24%;
+    right: 22%;
+    animation: float 11s ease-in-out infinite alternate;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 44px solid transparent;
+    border-right: 44px solid transparent;
+    border-bottom: 76px solid rgba(255, 255, 255, .10);
+    top: 40%;
+    left: 64%;
+    transform: rotate(10deg);
+    animation: float 13s ease-in-out infinite alternate;
+}
+
+.visual-content {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+}
+
+.visual-content .brand {
+    font-weight: 800;
+    letter-spacing: .3px;
+    margin-bottom: .5rem;
+}
+
+.visual-content .lead {
+    font-size: 1.05rem;
+    opacity: .9;
+}
+
+/* Right form panel */
+.auth-form {
+    background: #f2f4f7;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+.form-card {
+    width: min(520px, 90%);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-1);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: var(--surface);
+    max-height: none;
+    overflow: visible;
+}
+
+/* Inputs with leading icons */
+.input-icon {
+    position: relative;
+}
+
+.input-icon>i {
+    position: absolute;
+    left: .9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8aa1b6;
+    pointer-events: none;
+}
+
+.input-icon .form-control {
+    padding-left: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.input-icon .form-control:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(88, 160, 200, .25);
+    outline: none;
+}
+
+/* show/hide password */
+.toggle-eye {
+    position: absolute;
+    right: .5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: #8aa1b6;
+    padding: .25rem .5rem;
+    cursor: pointer;
+}
+
+.toggle-eye:hover {
+    color: var(--blue);
+}
+
+/* Buttons */
+.cn-btn-primary {
+    background: linear-gradient(135deg, var(--indigo), var(--cyan));
+    border: none;
+    color: white;
+    border-radius: 12px;
+    padding: .9rem 1rem;
+    font-weight: 600;
+    transition: transform .06s ease, filter .2s ease;
+}
+
+.cn-btn-primary:hover {
+    filter: brightness(1.06)
+}
+
+.cn-btn-primary:active {
+    transform: translateY(1px)
+}
+
+.cn-btn-primary:focus {
+    outline: 2px solid #38bdf8
+}
+
+
+/* Fieldset style */
+.fieldset {
+    padding: 0;
+    /* remove extra padding */
+    margin: 0;
+    /* remove extra margin */
+    border: none;
+}
+
+.fieldset legend {
+    font-size: 1rem;
+    /* match input label size */
+    font-weight: 500;
+    /* match label weight */
+    margin-bottom: 0.5rem;
+    /* spacing like labels */
+    color: var(--text);
+}
+
+/* Arrange radio buttons inline like other form controls */
+.fieldset .form-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-right: 1rem;
+}
+
+/* Links */
+a.link-primary {
+    color: var(--blue);
+}
+
+a.link-primary:hover {
+    color: var(--teal);
+}
+
+/* Dark-mode tweaks */
+[data-bs-theme="dark"] .auth-visual {
+    background: linear-gradient(180deg, #0f2238, var(--navy));
+}
+
+[data-bs-theme="dark"] .visual-gradient {
+    background:
+        radial-gradient(800px 600px at 90% -10%, rgba(88, 160, 200, .35), transparent 70%),
+        radial-gradient(600px 500px at -10% 110%, rgba(253, 245, 170, .25), transparent 70%);
+}
+
+[data-bs-theme="dark"] .form-card {
+    border-color: var(--border);
+    box-shadow: var(--shadow-2);
+}
+
+
+/* Keep radio buttons visible without making them larger */
+.form-check-input[type="radio"] {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--bs-body-color);
+    background-color: transparent;
+}
+
+.form-check-input[type="radio"]:hover {
+    border-color: var(--teal);
+}
+
+.form-check-input[type="radio"]:checked {
+    background-color: var(--teal);
+    border-color: var(--teal);
+}
+
+.form-check-input[type="radio"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(88, 160, 200, 0.4);
+}
